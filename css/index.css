@@ -25,7 +25,7 @@ body { font-family: 'Poppins',sans-serif;
     height: 100vh;
     background-position: center center;
     backface-visibility: hidden;
-    animation: body 45s linear infinite 0s;
+    animation: body 50s linear infinite 0s;
     animation-timing-function: ease-in-out;
     background-image:url("../images/slideshow/bg.jpg"); 
     }
@@ -33,16 +33,16 @@ body { font-family: 'Poppins',sans-serif;
     0% {
         background-image:url('../images/slideshow/bg.jpg');
     }
-    25% {
+    20% {
         background-image:url('../images/slideshow/bg2.jpg');
     }
-    50%{
+    40%{
         background-image:url('../images/slideshow/bg22.jpg');
     }
-    75%{
+    60%{
         background-image:url('../images/slideshow/bg222.jpg');
     }
-    100%{
+    80%{
         background-image:url('../images/slideshow/bg2222.jpg');
     }
 }
