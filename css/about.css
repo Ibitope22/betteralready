@@ -64,3 +64,61 @@ nav{
     left: 550px;
     top:-10px;
 }
+.ba{
+    color: rgba(0, 255, 55, 0.938);
+   }
+
+.header{
+    position: relative;
+    width: auto;
+    height: auto;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    top: 25px;
+}
+.content{
+    position: relative;
+    top: 30px;
+    height: 520px;
+    width: auto;
+}
+img{
+    border-radius: 10px;
+    position: inherit;
+    left: 25px;
+}
+.cont2{
+    position: relative;
+    top: 20px;
+}
+.cont2 p{
+    position: inherit;
+    left: 40px;
+    width: 1300px;
+    font-size: larger;
+}
+.content p{
+    color: white;
+}
+.button {
+    background-color:rgba(106, 238, 134, 0.938);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: inherit;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 1s;
+    position: inherit;
+    
+    top: -10px;
+  }
+  .button:hover{
+    background-color: rgba(0, 255, 55, 0.938);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    color: black;   
+  }
+  
