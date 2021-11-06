@@ -3,7 +3,7 @@
 
 body { font-family: 'Poppins',sans-serif;
      font-size: 16px; 
-     color: #555; 
+     color: white; 
      margin:0; 
      padding:0; 
      background-image:url("../images/bg22.jpeg"); 
@@ -22,7 +22,7 @@ body { font-family: 'Poppins',sans-serif;
         opacity: 1;
     }
     .logo:hover{
-        background-color:white;
+        background-color:rgba(0, 255, 55, 0.938);;
         color: black;
         border-radius: 10px;
     }
@@ -47,12 +47,12 @@ nav{
     left: -35px;
 }
 .mv a:hover{
-    background-color:white;
+    background-color:rgba(0, 255, 55, 0.938);;
   color: black;
   border-radius: 10px;
 }
 .act{
-  background-color: grey;
+  background-color: rgba(0, 255, 55, 0.938);;
   color: black;
   border-radius: 10px;
 }
