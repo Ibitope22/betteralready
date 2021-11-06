@@ -51,5 +51,7 @@ nav a:hover{
   border-radius: 10px;
 }
 .act{
-  
+  background-color: white;
+  color: black;
+  border-radius: 10px;
 }
