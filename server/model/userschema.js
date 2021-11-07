@@ -7,3 +7,5 @@ const schema= new mongoose.Schema({
     phonenumber: String
 })
 
+const user= mongoose.model('UserDetail', schema);
+module.exports= user;
