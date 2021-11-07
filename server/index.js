@@ -6,5 +6,5 @@ const app=express();
 dotenv.config({path:"config/config.env"});
 
 app.listen(process.env.PORT || 3000, ()=>{
-    console.log(`app running on port ${process.env.PORT}`)
+    console.log(`I.m awake! ${process.env.PORT}`)
 });

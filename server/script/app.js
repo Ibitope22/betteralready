@@ -3,7 +3,7 @@ const http = require('http');
 const bcrypt = require('bcrypt');
 const path = require("path");
 const bodyParser = require('body-parser');
-const users = require('./data').userDB;
+const users = require('./data').userDB; /** This line will import the array of data that is in data.js in to the user variaable decalared */
 
 const app = express();
 const server = http.createServer(app);
@@ -17,7 +17,7 @@ app.get('/',(req,res) => {
 });
 
 
-app.post('/register', async (req, res) => {
+app.post('/register', async (req, res) => { /**This will check if the email adress exists and if it dosen't will creat a new one. */
     try{
         let foundUser = users.find((data) => req.body.email === data.email);
         if (!foundUser) {
@@ -42,7 +42,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', async (req, res) => { /**This will check if the password exists and if it is a match and will allow the user to log in */
     try{
         let foundUser = users.find((data) => req.body.email === data.email);
         if (foundUser) {
