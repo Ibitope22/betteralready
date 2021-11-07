@@ -41,7 +41,7 @@ app.post('/register', async (req, res) => { /**This will check if the email adre
 
             console.log('User list', userlist);
     
-            res.send(`<div align ='center'><h2>You have been added to our cult!</h2></div><br><br><div align='center'><a href='localhost:5500/login.html'>Try login</a></div><br><br><div align='center'><a href='localhost:5500/signup.html'>Add another account</a></div>`);
+            res.send(`<div align ='center'><h2>You have been added to our program!</h2></div><br><br><div align='center'><a href='localhost:5500/login.html'>Try login</a></div><br><br><div align='center'><a href='localhost:5500/signup.html'>Add another account</a></div>`);
         } else {
             res.send(`<div align ='center'><h2>Email has been taken sorry!</h2></div><br><br><div align='center'><a href='localhost:5500/signup.html'>Try again</a></div>`);
         }
