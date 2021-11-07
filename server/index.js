@@ -83,6 +83,12 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
     }
 });
 
+app.use((req, res) => { 
+    res.status(404); 
+    res.send("Sorry, we don't have what you're looking for yet, do send an email to i.fatoki@alustudent.com to request a feature :)"); 
+   }) 
+
+
 app.listen(process.env.PORT || 3000, ()=>{
     console.log(`I.m awake! ${process.env.PORT}`)
 });
