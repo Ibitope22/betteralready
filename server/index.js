@@ -87,8 +87,14 @@ app.use((req, res) => {
     res.status(404); 
     res.send("Sorry, we don't have what you're looking for yet, do send an email to i.fatoki@alustudent.com to request a feature :)"); 
    }) 
-
-
+   app.use((req, res) => { 
+    res.status(500); 
+    res.send("The server has encountered a situation it does not know how to handle but we will be back :)"); 
+   })
+   app.use((req, res) => { 
+    res.status(507); 
+    res.send("Sorry, we don't have enough storage for this task please reach out to i.fatoki@alustudent.com :)"); 
+   })
 app.listen(process.env.PORT || 3000, ()=>{
     console.log(`I.m awake! ${process.env.PORT}`)
 });
