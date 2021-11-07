@@ -83,6 +83,19 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
     }
 });
 
+
+app.get("/fitness", async (req, res)=>{
+
+    const allUsers = await users.find()
+
+    const workout = allUsers[0].workout
+
+    res.status(200)
+    res.send(workout)
+
+})
+
+
 app.use((req, res) => { 
     res.status(404); 
     res.send("Sorry, we don't have what you're looking for yet, do send an email to i.fatoki@alustudent.com to request a feature :)"); 

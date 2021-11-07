@@ -79,3 +79,14 @@ nav{
 .ba{
     color: rgba(0, 255, 55, 0.938);
    }
+
+.midbar{
+    height: auto;
+    width: auto;
+    overflow: hidden;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    background-position-x: center;
+    background-color: rgba(0, 0, 0, 0.808);
+}
