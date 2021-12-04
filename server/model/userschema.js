@@ -1,13 +1,11 @@
 const mongoose=require('mongoose');
 
-const workoutTypeSchema = new mongoose.Schema({
-
-})
 
 const workoutSchema = new mongoose.Schema({
         date: {type: Date,
                 required:true,},
-        workoutType:[workoutTypeSchema],
+        workoutType:{ type:String,
+                        required:true,},
         checkbox:{type:Boolean},
         
 })

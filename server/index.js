@@ -7,7 +7,7 @@ const app=express();
 const bcrypt = require('bcrypt');
 const path = require("path");
 const users = require('../server/model/userschema'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
-const Event = require('../server/model/workout')
+
 
 dotenv.config({path:"config/config.env"});
 
@@ -41,12 +41,9 @@ app.post('/register', async (req, res) => { /**This will check if the email adre
 
             console.log('User list', userlist);
     
-            res.send(`<div align ='center'><h2>You have been added to our program!</h2></div><br>
-            <br><div align='center'><a href='localhost:5500/login.html'>Try login</a></div><br>
-            <br><div align='center'><a href='localhost:5500/signup.html'>Add another account</a></div>`);
+            res.send(`<div align ='center'><h2>You have been added to our program!</h2></div><br><br><div align='center'><a href='localhost:5500/login.html'>Try login</a></div><br><br><div align='center'><a href='localhost:5500/signup.html'>Add another account</a></div>`);
         } else {
-            res.send(`<div align ='center'><h2>Email has been taken sorry!</h2></div>
-            <br><br><div align='center'><a href='localhost:5500/signup.html'>Try again</a></div>`);
+            res.send(`<div align ='center'><h2>Email has been taken sorry!</h2></div><br><br><div align='center'><a href='localhost:5500/signup.html'>Try again</a></div>`);
         }
     } catch{
         res.send("Internal server error :(");
@@ -86,46 +83,19 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
     }
 });
 
-/* Fetch all events */
-app.get('/get_events', async (req,res) => {
-    try {
-        const events = await Event.find();
-
-        res.status(200).json(events);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
+app.post('/add_workouts', async (req,res) =>{
+    const { email } = req.body 
+    console.log(email)
+    try{
+    let finduser = await users.findOne({email});
+    if (findUser){
+    const workout = {date, checkbox, workoutType}
+            finduser.workout.push(workout)
+    }}
+    catch(e){
+       console.error(e) 
     }
-});
-
-/* Create new event */
-app.post('/add_evens', async (req,res) =>{
-    const { title, date } = req.body;
-
-    const newEvent = new Event({ title, date })
-
-    try {
-        await newEvent.save();
-        res.status(201).json(
-            {
-                type: "success",
-                message: "Event has been added successfully"
-            }
-        );
-    } catch (error) {
-        res.status(409).json({ message: error.message });
-    }
-});
-
-/* Delete singile event */
-app.delete('/delete_event', async(req,res) => {
-    const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No event with id: ${id}`);
-
-    await Event.findByIdAndRemove(id);
-
-    res.json({ message: "Event deleted successfully." });
-});
+})
 
 app.get("/fitness", async (req, res)=>{
 

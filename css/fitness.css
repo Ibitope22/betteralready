@@ -18,6 +18,7 @@ body { font-family: 'Poppins',sans-serif;
      margin:0; 
      padding:0; 
      background-image:url("../images/bg69.jpg"); 
+     background-color: black;
     background-repeat:no-repeat;
     background-size: cover;
     }
@@ -80,13 +81,5 @@ nav{
     color: rgba(0, 255, 55, 0.938);
    }
 
-.midbar{
-    height: auto;
-    width: auto;
-    overflow: hidden;
-    align-self: center;
-    align-items: center;
-    align-content: center;
-    background-position-x: center;
-    background-color: rgba(0, 0, 0, 0.808);
-}
+
+
