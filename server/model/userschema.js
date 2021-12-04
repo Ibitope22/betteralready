@@ -1,17 +1,26 @@
 const mongoose=require('mongoose');
 
+const workoutTypeSchema = new mongoose.Schema({
+
+})
+
 const workoutSchema = new mongoose.Schema({
-        date: {type: Date},
-        workoutType:{type:String},
+        date: {type: Date,
+                required:true,},
+        workoutType:[workoutTypeSchema],
         checkbox:{type:Boolean},
         
 })
 
 const schema= new mongoose.Schema({
-    username: {type: String},
-    email: {type: String},
-    password: {type: String},
-    phonenumber: {type: String},
+    username: {type: String,
+                required:true},
+    email: {type: String,
+            required:true,},
+    password: {type: String,
+                required:true,},
+    phonenumber: {type: String,
+                    required:true,},
     workout: [workoutSchema]
 })
 

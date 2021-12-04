@@ -1,13 +1,17 @@
 const mongoose=require('mongoose')
 const dotenv = require('dotenv');
 const express= require('express');
+const cors =require('cors');
 const betteralready= require('../server/config/databaseConfig')
 const app=express();
 
 const bcrypt = require('bcrypt');
 const path = require("path");
 const users = require('../server/model/userschema'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
+const workoutRoutes = require('../server/routes/workout');
 
+app.use(cors());
+app.use('/workout', workoutRoutes);
 
 dotenv.config({path:"config/config.env"});
 
