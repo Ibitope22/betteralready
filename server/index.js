@@ -41,9 +41,9 @@ app.post('/register', async (req, res) => { /**This will check if the email adre
 
             console.log('User list', userlist);
     
-            res.send(`<div align ='center'><h2>You have been added to our program!</h2></div><br><br><div align='center'><a href='localhost:5500/login.html'>Try login</a></div><br><br><div align='center'><a href='localhost:5500/signup.html'>Add another account</a></div>`);
+            res.redirect(`${process.env.lead}/login.html`)
         } else {
-            res.send(`<div align ='center'><h2>Email has been taken sorry!</h2></div><br><br><div align='center'><a href='localhost:5500/signup.html'>Try again</a></div>`);
+            res.redirect(`${process.env.lead}/taken.html`)
         }
     } catch{
         res.send("Internal server error :(");
@@ -60,15 +60,11 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
     
             const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
             if (passwordMatch) {
-                let usrname = findUser.username;
-                res.send(`<div align ='center'><h2>login successful</h2></div>
-                <br><br><br><div align ='center'><h3>Hello ${usrname}</h3></div><br><br>
-                <div align='center'><button name="button" type="button" class="button" 
-                onclick="location.href='login.html'">logout</button></div>`);
+                
+                res.redirect(`${process.env.lead}/fitness.html`)
+                
             } else {
-                res.send(`<div align ='center'><h2>Invalid email or password</h2>
-                </div><br><br><div align ='center'>
-                <a href='./login.html'>login again</a></div>`);
+                res.redirect(`${process.env.lead}/invalid.html`)
             }
         }
         else {
@@ -76,7 +72,7 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
             let fakePass = await bcrypt.genSalt(23); /**generates a salt */
             await bcrypt.compare(req.body.password, fakePass);
     
-            res.send("<div align ='center'><h2>Wrong email or password</h2></div><br><br><div align='center'><a href='./login.html'>Try again<a><div>");
+            res.redirect(`${process.env.lead}/invalid.html`)
         }
     } catch{
         res.send("Internal server error");
@@ -113,5 +109,5 @@ app.use((req, res) => {
     res.send("Sorry, we don't have enough storage for this task please reach out to i.fatoki@alustudent.com :)"); 
    })
 app.listen(process.env.PORT || 3000, ()=>{
-    console.log(`I.m awake! ${process.env.PORT}`)
+    console.log(`I wishi I was dead! ${process.env.PORT}`)
 });
