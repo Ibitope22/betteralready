@@ -61,8 +61,14 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
             const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
             if (passwordMatch) {
                 
-                res.redirect(`${process.env.lead}/fitness.html`)
-                
+            try {
+                  res.status(200).redirect(`${process.env.lead}/fitness.html`).json({
+                    findUser
+                })
+            } catch (error) {
+                console.error(error)
+            }
+              
             } else {
                 res.redirect(`${process.env.lead}/invalid.html`)
             }
@@ -109,5 +115,5 @@ app.use((req, res) => {
     res.send("Sorry, we don't have enough storage for this task please reach out to i.fatoki@alustudent.com :)"); 
    })
 app.listen(process.env.PORT || 3000, ()=>{
-    console.log(`I wishi I was dead! ${process.env.PORT}`)
+    console.log(`I wish I was dead! ${process.env.PORT}`)
 });
