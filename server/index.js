@@ -83,19 +83,6 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
     }
 });
 
-app.post('/add_workouts', async (req,res) =>{
-    const { email } = req.body 
-    console.log(email)
-    try{
-    let finduser = await users.findOne({email});
-    if (findUser){
-    const workout = {date, checkbox, workoutType}
-            finduser.workout.push(workout)
-    }}
-    catch(e){
-       console.error(e) 
-    }
-})
 
 app.get("/fitness", async (req, res)=>{
 

@@ -10,19 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness:BetterAlready</title>
     <link rel="stylesheet" href="css/fitness.css">
-     <link href='fullcalendar-scheduler/main.css' rel='stylesheet' />
-    <script src='fullcalendar-scheduler/main.js'></script>
-    <script>
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'resourceTimelineWeek'
-        });
-        calendar.render();
-      });
-
-    </script>
 </head>
 
 <body>
@@ -34,14 +22,17 @@
         </div>
         <div class="mv">
             <a href="about.html">About</a>&nbsp;&nbsp;
-            <a class='act' href="fitness.html">Fitness</a>&nbsp;&nbsp;
-        <a href="index.html">Home</a>&nbsp; &nbsp;           
+            <a href="fitness.html">Fitness</a>&nbsp;&nbsp;
+        <a class="act" href="index.html">Home</a>&nbsp; &nbsp;           
     </div>
     </nav>
 
-    <div id='calendar'></div>
+    <div class="midbar">
+        <p id="date">kkkkkk</p>
+        <p id="workoutType"></p>
+        <p id="checkbox"></p>
+    </div>
 
-    
 </body>
 
 </html>
