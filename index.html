@@ -39,7 +39,7 @@
     <div class="aud">
     <audio cont id="player" autoplay loop src="images/faceofftherock.mp3">
     </audio>
-    
+        <button id="btn_playPause">Mute</button>
 </div>
 
 </body>
@@ -47,6 +47,17 @@
 <script>
     var audio = document.getElementById("player");
     audio.volume = 0.2;
+
+    var losAudio = document.getElementById("player");
+
+function losAudio_playPause() {
+    var isPaused = losAudio.paused;
+    losAudio[isPaused ? "play" : "pause"]();
+    this.style.backgroundImage="url('img/"+ (isPaused ? "icoPlay" : "icoPause") +".png')";
+}
+
+document.getElementById("btn_playPause").addEventListener("click", losAudio_playPause);
+    
   </script>
 
 </html>
