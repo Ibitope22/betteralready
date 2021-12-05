@@ -8,3 +8,6 @@ run npm install
 then 
 
 npm run dev
+
+
+don't run npm install outside server.
