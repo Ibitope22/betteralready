@@ -1,19 +1,16 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
-const workoutSchema = new mongoose.Schema({
-        date: {type: Date},
-        workoutType:{type:String},
-        checkbox:{type:Boolean},
-        
-})
 
-const schema= new mongoose.Schema({
+const userschema = new mongoose.Schema({
     username: {type: String},
     email: {type: String},
     password: {type: String},
     phonenumber: {type: String},
-    workout: [workoutSchema]
+    workout: [{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'workout',
+    }]
 })
 
-const user= mongoose.model('UserDetail', schema);
+const user= mongoose.model('UserDetail', userschema);
 module.exports= user;

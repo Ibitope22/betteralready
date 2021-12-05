@@ -7,7 +7,7 @@ const app=express();
 const bcrypt = require('bcrypt');
 const path = require("path");
 const users = require('../server/model/userschema'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
-
+const workouts = require('../server/model/workout')
 
 dotenv.config({path:"config/config.env"});
 
@@ -49,8 +49,8 @@ app.post('/register', async (req, res) => { /**This will check if the email adre
         res.send("Internal server error :(");
     }
 });
-
-app.post('/login', async (req, res) => { /**This will check if the password exists and if it is a match and will allow the user to log in */
+/**This will check if the password exists and if it is a match and will allow the user to log in */
+app.post('/login', async (req, res) => { 
     try{
         let findUser = await users.findOne({email:req.body.email});
         if (findUser) {
@@ -62,9 +62,8 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
             if (passwordMatch) {
                 
             try {
-                  res.status(200).redirect(`${process.env.lead}/fitness.html`).json({
-                    findUser
-                })
+                  res.status(200).redirect(`${process.env.lead}/fitness.html`)
+
             } catch (error) {
                 console.error(error)
             }
@@ -86,21 +85,28 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
 });
 
 
-app.get("/view_workouts", async (req, res)=>{
+app.post('/addworkout', async(req,res) => {
+    try {
+        
 
-    let findUser = await users.findOne({email:req.body.email});
+       
+            let newworkout = {
+                date: req.body.date,
+                workoutType: req.body.workoutType,
+                checkbox: req.body.checkbox
+            };
+            await workouts.create(newworkout)
 
-    try{
-        let finduser = await users.findOne({email});
-        if (findUser){
-        const workout = {date, checkbox, workoutType}
-                finduser.workout.push(workout)
-        }}
-        catch(e){
-           console.error(e) 
-        }
-    });
+            console.log(newworkout)
 
+            res.status(200)
+        
+        
+    } catch (error) {
+        res.send("Internal server error")
+        
+    }
+})
 
 app.use((req, res) => { 
     res.status(404); 
