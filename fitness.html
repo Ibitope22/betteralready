@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness:BetterAlready</title>
     <link rel="stylesheet" href="css/fitness.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/evo-calendar/evo-calendar/css/evo-calendar.css"/>
+    <link rel="stylesheet" type="text/css" href="node_modules/evo-calendar/evo-calendar/css/evo-calendar.midnight-blue.css"/>
 
 </head>
 
@@ -27,12 +29,23 @@
     </div>
     </nav>
 
-    <div class="midbar">
-        <p id="date">kkkkkk</p>
-        <p id="workoutType"></p>
-        <p id="checkbox"></p>
+    <div class="cal">
+    <div id="calendar"></div>
     </div>
 
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="node_modules/evo-calendar/evo-calendar/js/evo-calendar.js"></script>
+
+    <script>
+    // initialize your calendar, once the page's DOM is ready
+    $(document).ready(function() {
+        $('#calendar').evoCalendar({
+            theme: 'midnight blue'
+        })
+    })
+    </script>
 </body>
 
 </html>

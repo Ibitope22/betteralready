@@ -90,3 +90,8 @@ nav{
     background-position-x: center;
     background-color: rgba(0, 0, 0, 0.808);
 }
+.cal{
+    margin: 100px  auto;
+    border-radius: 8px;
+    width: 1166px;
+}
