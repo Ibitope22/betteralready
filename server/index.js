@@ -52,7 +52,7 @@ app.post('/register', async (req, res) => { /**This will check if the email adre
 
 app.post('/login', async (req, res) => { /**This will check if the password exists and if it is a match and will allow the user to log in */
     try{
-        let findUser = await users.findOne({username:req.body.username});
+        let findUser = await users.findOne({email:req.body.email});
         if (findUser) {
     
             let submittedPass = req.body.password; 
@@ -84,16 +84,20 @@ app.post('/login', async (req, res) => { /**This will check if the password exis
 });
 
 
-app.get("/fitness", async (req, res)=>{
+app.get("/view_workouts", async (req, res)=>{
 
-    const allUsers = await users.find()
+    let findUser = await users.findOne({email:req.body.email});
 
-    const workout = allUsers[0].workout
-
-    res.status(200)
-    res.send(workout)
-
-})
+    try{
+        let finduser = await users.findOne({email});
+        if (findUser){
+        const workout = {date, checkbox, workoutType}
+                finduser.workout.push(workout)
+        }}
+        catch(e){
+           console.error(e) 
+        }
+    });
 
 
 app.use((req, res) => { 
