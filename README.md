@@ -1,7 +1,7 @@
 # betteralready
 WPD coursework 1
 
-CD to server 
+cd to server 
 
 run npm install
 
