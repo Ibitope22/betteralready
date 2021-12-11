@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const goalSchema = new mongoose.Schema({
   user_id: {
     type: String,
-    required: [true, "User Id is required for all goals"],
+    required: [true],
   },
   goals: {
     type: String,
@@ -10,9 +10,9 @@ const goalSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-  },
+  }
 });
 
-const Goal = mongoose.model("Goal", goalSchema);
+const userGoal = mongoose.model("accomplishments", goalSchema);
 
-module.exports = Goal;
+module.exports = userGoal;

@@ -9,13 +9,14 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
+const goalRouter = require("./routes/goalroute");
+const userRouter = require("./routes/userRoute");
 
 
 
-const bcrypt = require('bcrypt');
 const path = require("path");
-const users = require('./model/userModel'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
-const workouts = require('../server/model/goalModel')
+const users = require('./models/userschema'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
+const workouts = require('./models/goalschema')
 
 dotenv.config({path:"config/config.env"});
 
@@ -42,11 +43,11 @@ app.use(morgan("dev"));
   app.use(mongoSanitize());
 
 
-app.use("/api/v1/goals", goalRouter);
-app.use("/api/v1/users", userRouter);
+app.use("/api/goals", goalRouter);
+app.use("/api/users", userRouter);
 
 
-app.all("*", (req, res, next) => {
+app.all("*", (req, next) => {
     const err = new Error(`Can't find ${req.originalUrl}`);
     err.status = "fail";
     err.statusCode = 404;
@@ -69,3 +70,6 @@ app.use((err, req, res, next) => {
 app.listen(process.env.PORT || 3000, ()=>{
     console.log(`I wish I was dead! ${process.env.PORT}`)
 });
+
+
+module.exports = app;
