@@ -17,7 +17,7 @@ exports.signUp = async (req, res, next) => {
     });
     const token = entranceStamp(registration._id);
 
-    res.status(200).redirect(`${process.env.lead}/fitness.html`)
+    res.status(200).redirect(`${process.env.lead}/login.html`)
 
   } catch (err) {
     if (err.code == "11000") {
@@ -33,7 +33,7 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(200).redirect(`${process.env.lead}/invalid.html`)
+    return res.status(200).redirect(`${process.env.lead}/login.html`)
     
   }
   const user = await User.findOne({ email }).select("+password");

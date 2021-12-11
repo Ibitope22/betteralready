@@ -6,6 +6,7 @@ const route = express.Router();
 
 route.post("/register", authcont.signUp);
 route.post("/login", authcont.login);
+route.get("/logout", usercont.logoutUser);
 
 route
   .route("/")
