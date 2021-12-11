@@ -3,11 +3,19 @@ const dotenv = require('dotenv');
 const express= require('express');
 const betteralready= require('../server/config/databaseConfig')
 const app=express();
+const cors = require("cors");
+const morgan = require("morgan");
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+
+
 
 const bcrypt = require('bcrypt');
 const path = require("path");
-const users = require('../server/model/userschema'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
-const workouts = require('../server/model/workout')
+const users = require('./model/userModel'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
+const workouts = require('../server/model/goalModel')
 
 dotenv.config({path:"config/config.env"});
 
@@ -15,100 +23,38 @@ betteralready();
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'../index.html')));
+app.use(helmet());
 
 
-app.get('/',(req,res) => {
-    res.sendFile(path.join(__dirname,'../index.html'));
-});
+const limiter = rateLimit({
+    max: 50,
+    windowMs: 60 * 60 * 1000,
+    message: "Please try again later",
+  });
+
+  app.use("/api", limiter);
+  app.use(xss());
+
+  app.use(cors());
+app.use(morgan("dev"));
+
+  app.use(express.json({ limit: "10kb" }));
+  app.use(mongoSanitize());
 
 
-app.post('/register', async (req, res) => { /**This will check if the email adress exists and if it dosen't will creat a new one. */
-    try{
-        let findUser = await users.findOne({email:req.body.email});
-        if (!findUser) {
-    
-            let hashPassword = await bcrypt.hash(req.body.password, 10);
-    
-            let newUser = {
-                username: req.body.username,
-                email: req.body.email,
-                password: hashPassword,
-                phonenumber: req.body.phonenumber
-            };
-            await users.create(newUser);
-
-            const userlist= await users.find()
-
-            console.log('User list', userlist);
-    
-            res.redirect(`${process.env.lead}/login.html`)
-        } else {
-            res.redirect(`${process.env.lead}/taken.html`)
-        }
-    } catch{
-        res.send("Internal server error :(");
-    }
-});
-/**This will check if the password exists and if it is a match and will allow the user to log in */
-app.post('/login', async (req, res) => { 
-    try{
-        let findUser = await users.findOne({email:req.body.email});
-        if (findUser) {
-    
-            let submittedPass = req.body.password; 
-            let storedPass = findUser.password; 
-    
-            const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
-            if (passwordMatch) {
-                
-            try {
-                  res.status(200).redirect(`${process.env.lead}/fitness.html`)
-
-            } catch (error) {
-                console.error(error)
-            }
-              
-            } else {
-                res.redirect(`${process.env.lead}/invalid.html`)
-            }
-        }
-        else {
-    
-            let fakePass = await bcrypt.genSalt(23); /**generates a salt */
-            await bcrypt.compare(req.body.password, fakePass);
-    
-            res.redirect(`${process.env.lead}/invalid.html`)
-        }
-    } catch{
-        res.send("Internal server error");
-    }
-});
+app.use("/api/v1/goals", goalRouter);
+app.use("/api/v1/users", userRouter);
 
 
-app.post('/addworkout', async(req,res) => {
-    try {
-        
+app.all("*", (req, res, next) => {
+    const err = new Error(`Can't find ${req.originalUrl}`);
+    err.status = "fail";
+    err.statusCode = 404;
+    next(err);
+  });
 
-       
-            let newworkout = {
-                date: req.body.date,
-                workoutType: req.body.workoutType,
-                checkbox: req.body.checkbox
-            };
-            await workouts.create(newworkout)
 
-            console.log(newworkout)
-
-            res.status(200)
-        
-        
-    } catch (error) {
-        res.send("Internal server error")
-        
-    }
-})
-
-app.use((req, res) => { 
+app.use((err, req, res, next) => { 
     res.status(404); 
     res.send("Sorry, we don't have what you're looking for yet, do send an email to i.fatoki@alustudent.com to request a feature :)"); 
    }) 
