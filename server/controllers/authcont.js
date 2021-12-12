@@ -9,6 +9,11 @@ const entranceStamp = (id) => {
 
 exports.signUp = async (req, res, next) => {
   try {
+
+    let findUser = await User.findOne({email:req.body.email});
+
+    if (!findUser) {
+
     const registration = await User.create({
       name: req.body.name,
       email: req.body.email,
@@ -18,6 +23,10 @@ exports.signUp = async (req, res, next) => {
     const token = entranceStamp(registration._id);
 
     res.status(200).redirect(`${process.env.lead}/login.html`)
+  }
+  else {
+    res.redirect(`${process.env.lead}/taken.html`)
+}
 
   } catch (err) {
     if (err.code == "11000") {
