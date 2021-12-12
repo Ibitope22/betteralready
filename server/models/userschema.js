@@ -24,19 +24,20 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
+
   if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password, 12);
+  this.password = await bcrypt.hash(this.password, 23);
   this.passwordconfirmed = undefined;
+
   next();
+
 });
 
-userSchema.methods.checkPassword = async function (
-  potentialPassword,
-  userPassword
-) {
-  return await bcrypt.compare(potentialPassword, userPassword);
+userSchema.methods.checkPassword = async function ( enteredpassword, userPassword ){
+
+  return await bcrypt.compare(enteredpassword, userPassword);
+
 };
 
 const User = mongoose.model("userdetails", userSchema);
-
 module.exports = User;

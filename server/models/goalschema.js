@@ -14,5 +14,4 @@ const goalSchema = new mongoose.Schema({
 });
 
 const userGoal = mongoose.model("accomplishments", goalSchema);
-
 module.exports = userGoal;

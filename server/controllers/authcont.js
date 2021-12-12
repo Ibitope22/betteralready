@@ -29,11 +29,7 @@ exports.signUp = async (req, res, next) => {
 }
 
   } catch (err) {
-    if (err.code == "11000") {
-      res.status(200).redirect(`${process.env.lead}/taken.html`)
-    } else {
-      res.status(200).redirect(`${process.env.lead}/taken2.html`)
-    }
+    res.status(200).redirect(`${process.env.lead}/taken2.html`)
     console.log(err);
   }
 };
