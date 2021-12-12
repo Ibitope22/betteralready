@@ -16,7 +16,7 @@ const userRouter = require("./routes/userRoute");
 
 const path = require("path");
 const users = require('./models/userschema'); /** This line will import the array of data that is in data.js in to the user variaable decalared */
-const workouts = require('./models/goalschema')
+const workouts = require('./models/accomplishments')
 
 dotenv.config({path:"config/config.env"});
 
