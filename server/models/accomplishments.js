@@ -7,7 +7,7 @@ const goalSchema = new mongoose.Schema({
   goals: {
     type: String,
   },
-  createdAt: {
+  date: {
     type: Date,
     default: Date.now(),
   }
