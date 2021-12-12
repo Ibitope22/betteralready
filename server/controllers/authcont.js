@@ -48,7 +48,7 @@ exports.login = async (req, res, next) => {
   const user = await User.findOne({ email }).select("+password");
 
   if (!user || !(await user.checkPassword(password, user.password))) {
-    return res.status(200).redirect(`${process.env.lead}/taken.html`)
+    return res.status(200).redirect(`${process.env.lead}/invalid.html`)
   }
 
   const token = entranceStamp(user._id);
