@@ -7,7 +7,7 @@ exports.adduserGoal = async (req, res) => {
       const goal = new userGoal(req.body);
       const newuserGoal = await goal.save();
       res.status(201).json({
-        status: "success",
+        status: "Goal Added",
         data: {
           goal: newuserGoal,
         },
@@ -18,7 +18,7 @@ exports.adduserGoal = async (req, res) => {
         req.body
       );
       res.status(201).json({
-        status: "success",
+        status: "Goal Added",
         data: {
           goal: newuserGoal,
         },
@@ -33,7 +33,7 @@ exports.getuserGoal = async (req, res) => {
   try {
     const goal = await userGoal.find({ user_id: req.params.id });
     res.status(200).json({
-      status: "success",
+      status: "Here is the goal",
       data: {
         goal,
       },
