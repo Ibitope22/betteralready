@@ -12,6 +12,17 @@ exports.adduserGoal = async (req, res) => {
           goal: newuserGoal,
         },
       });
+    } else {
+      const newuserGoal = await userGoal.updateOne(
+        { user_id: req.body.user_id },
+        req.body
+      );
+      res.status(201).json({
+        status: "success",
+        data: {
+          goal: newuserGoal,
+        },
+      });
     }
   } catch (err) {
     res.status(500).redirect(`${process.env.lead}/taken2.html`)
