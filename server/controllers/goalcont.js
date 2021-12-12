@@ -25,11 +25,7 @@ exports.adduserGoal = async (req, res) => {
       });
     }
   } catch (err) {
-    res.status(500).json({
-      status: "fail",
-      message: err,
-    });
-    console.log(err);
+    res.status(500).redirect(`${process.env.lead}/taken2.html`)
   }
 };
 
@@ -43,10 +39,7 @@ exports.getuserGoal = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
+    res.status(404).redirect(`${process.env.lead}/taken2.html`)
   }
 };
 
@@ -61,10 +54,7 @@ exports.updateuserGoal = async (req, res) => {
       data: goal,
     });
   } catch (err) {
-    res.status(204).json({
-      status: "fail",
-      message: err,
-    });
+    res.status(204).redirect(`${process.env.lead}/taken2.html`)
   }
 };
 
@@ -76,10 +66,7 @@ exports.deleteuserGoal = async (req, res) => {
       data: null,
     });
   } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
+    res.status(400).redirect(`${process.env.lead}/taken2.html`)
   }
 };
 
@@ -96,9 +83,6 @@ exports.getAlluserGoals = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
+    res.status(404).redirect(`${process.env.lead}/taken2.html`)
   }
 };
