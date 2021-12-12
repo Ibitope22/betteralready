@@ -47,17 +47,11 @@ app.use("/api/goals", goalRouter);
 app.use("/api/users", userRouter);
 
 
-app.all("*", (req, next) => {
-    const err = new Error(`Can't find ${req.originalUrl}`);
-    err.status = "fail";
-    err.statusCode = 404;
-    next(err);
-  });
 
 
 app.use((err, req, res, next) => { 
     res.status(404); 
-    res.send("Sorry, we don't have what you're looking for yet, do send an email to i.fatoki@alustudent.com to request a feature :)"); 
+    res.redirect(`${process.env.lead}/taken2.html`)
    }) 
    app.use((req, res) => { 
     res.status(500); 
@@ -68,7 +62,7 @@ app.use((err, req, res, next) => {
     res.send("Sorry, we don't have enough storage for this task please reach out to i.fatoki@alustudent.com :)"); 
    })
 app.listen(process.env.PORT || 3000, ()=>{
-    console.log(`I wish I was dead! ${process.env.PORT}`)
+    console.log(`I wish I was dead! but I'm on PORT ${process.env.PORT}`)
 });
 
 
