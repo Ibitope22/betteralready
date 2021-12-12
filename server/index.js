@@ -11,7 +11,20 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const goalRouter = require("./routes/goalroute");
 const userRouter = require("./routes/userRoute");
+const express = require('express');
+const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
 
+
+
+const oneDay = 1000 * 60 * 60 * 24;
+
+app.use(sessions({
+  secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+  saveUninitialized:true,
+  cookie: { maxAge: oneDay },
+  resave: false
+}));
 
 
 const path = require("path");
@@ -25,7 +38,7 @@ betteralready();
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'../index.html')));
 app.use(helmet());
-
+app.use(cookieParser());
 
 const limiter = rateLimit({
     max: 50,
