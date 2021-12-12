@@ -12,17 +12,6 @@ exports.adduserGoal = async (req, res) => {
           goal: newuserGoal,
         },
       });
-    } else {
-      const newuserGoal = await userGoal.updateOne(
-        { user_id: req.body.user_id },
-        req.body
-      );
-      res.status(201).json({
-        status: "success",
-        data: {
-          goal: newuserGoal,
-        },
-      });
     }
   } catch (err) {
     res.status(500).redirect(`${process.env.lead}/taken2.html`)
@@ -70,19 +59,3 @@ exports.deleteuserGoal = async (req, res) => {
   }
 };
 
-
-
-
-exports.getAlluserGoals = async (req, res) => {
-  try {
-    const goals = await userGoal.find();
-    res.status(200).json({
-      status: "success",
-      data: {
-        goals,
-      },
-    });
-  } catch (err) {
-    res.status(404).redirect(`${process.env.lead}/taken2.html`)
-  }
-};

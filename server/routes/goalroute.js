@@ -3,7 +3,6 @@ const goalcont = require("../controllers/goalcont");
 
 const router = express.Router();
 
-router.route("/").get(goalcont.getAlluserGoals).post(goalcont.adduserGoal);
 router
   .route("/:id")
   .get(goalcont.getuserGoal)
