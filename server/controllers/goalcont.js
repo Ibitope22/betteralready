@@ -1,4 +1,4 @@
-const userGoal = require("../models/goalschema");
+const userGoal = require("../models/accomplishments");
 
 exports.adduserGoal = async (req, res) => {
   try {
