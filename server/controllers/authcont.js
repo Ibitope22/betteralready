@@ -13,7 +13,7 @@ exports.signUp = async (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm
+      passwordconfirm: req.body.passwordconfirm
     });
     const token = entranceStamp(registration._id);
 

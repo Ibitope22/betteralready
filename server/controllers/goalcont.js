@@ -1,41 +1,5 @@
 const userGoal = require("../models/goalschema");
 
-exports.getAlluserGoals = async (req, res) => {
-  try {
-    const goals = await userGoal.find();
-    res.status(200).json({
-      status: "success",
-      data: {
-        goals,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-
-
-exports.getuserGoal = async (req, res) => {
-  try {
-    const goal = await userGoal.find({ user_id: req.params.id });
-    res.status(200).json({
-      status: "success",
-      data: {
-        goal,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-
-
 exports.adduserGoal = async (req, res) => {
   try {
     const goal = await userGoal.findOne({ user_id: req.body.user_id });
@@ -69,6 +33,22 @@ exports.adduserGoal = async (req, res) => {
   }
 };
 
+exports.getuserGoal = async (req, res) => {
+  try {
+    const goal = await userGoal.find({ user_id: req.params.id });
+    res.status(200).json({
+      status: "success",
+      data: {
+        goal,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
 
 exports.updateuserGoal = async (req, res) => {
   try {
@@ -97,6 +77,26 @@ exports.deleteuserGoal = async (req, res) => {
     });
   } catch (err) {
     res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+
+
+
+exports.getAlluserGoals = async (req, res) => {
+  try {
+    const goals = await userGoal.find();
+    res.status(200).json({
+      status: "success",
+      data: {
+        goals,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
       status: "fail",
       message: err,
     });

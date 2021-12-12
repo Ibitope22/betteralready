@@ -12,12 +12,12 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  passwordConfirm: {
+  passwordconfirm: {
     type: String,
 
     validate: {
-      validator: function (passwordConfirm) {
-        return passwordConfirm === this.password;
+      validator: function (passwordconfirm) {
+        return passwordconfirm === this.password;
       }
     }
   }
@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
-  this.passwordConfirmed = undefined;
+  this.passwordconfirmed = undefined;
   next();
 });
 
