@@ -68,7 +68,7 @@ app.use((err, req, res, next) => {
    }) 
    app.use((req, res) => { 
     res.status(500); 
-    res.send("The server has encountered a situation it does not know how to handle but we will be back :)"); 
+    res.redirect(`${process.env.lead}/taken2.html`); 
    })
    app.use((req, res) => { 
     res.status(507); 
